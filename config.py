@@ -95,7 +95,8 @@ def save_config():
 
 def save_config_to_env():
     for key in cfg:
-        os.environ[key] = cfg[key]
+        if isinstance(cfg[key], str):
+            os.environ[key] = cfg[key]
 
 # 保存配置到文件… 这个函数现在会把配置文件里的注释也删掉……
 
