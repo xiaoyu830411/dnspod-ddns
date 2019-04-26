@@ -73,8 +73,12 @@ def main():
                 
                 ip_pool.insert(0, current_ip)
                 cfg['ip_pool'] = ','.join([str(x) for x in ip_pool[:ip_count]])
-                update_record()
-                save_config()
+
+                try:
+                    update_record()
+                    save_config()
+                except Exception as e:
+                    logging.warning('update_recoud or save_config failed: %s', str(e))
         else:
             logging.error('get current ip FAILED.')
 
